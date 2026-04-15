@@ -51,9 +51,9 @@ const LESSONS = [
     label: "Earth",
     icon: "EARTH",
     route: "back on Earth",
-    routeMeta: "Home state to galactic center",
+    routeMeta: "Home to galactic center",
     title: "Mission Briefing",
-    eyebrow: "You're standing in your home state. At the center of our galaxy, something extraordinary lurks.",
+    eyebrow: "You are on Earth. At the center of our galaxy, something extraordinary lurks.",
     bullets: [
       "Black holes are regions where gravity becomes so strong that not even light can escape.",
       "Most large galaxies, including the Milky Way, contain a supermassive black hole at their center.",
@@ -61,10 +61,10 @@ const LESSONS = [
       "This journey explains what that boundary is, how scientists photographed one, and what the image revealed."
     ],
     keyFact: "Black holes are not cosmic vacuum cleaners. They only pull objects in if those objects get too close. From a safe distance, their gravity behaves like any other object with equal mass.",
-    stat: { value: "4,000,000", label: "solar masses of Sagittarius A*, the black hole at our galaxy's center" },
+    stat: { value: "4M", label: "solar masses of Sagittarius A*, the black hole at our galaxy's center" },
     bonusFacts: [
-      { icon: "MAP", title: "Nearest black hole", body: "The nearest known stellar-mass black hole is Gaia BH1. It is about 1,500 light-years away in the constellation Ophiuchus, far enough away to be completely safe." },
-      { icon: "TIME", title: "Time dilation", body: "Near a black hole, time itself runs slower because gravity is so strong. That means someone close to the black hole would experience less time passing than someone far away." },
+      { icon: "MAP", title: "Nearest black hole", body: "The nearest known stellar-mass black hole is about 1,500 light-years away in the constellation Monoceros, far enough away to be completely safe." },
+      { icon: "TIME", title: "Time dilation", body: "Near a black hole, time itself runs slower due to extreme gravity. That effect is real and measurable in general relativity." },
       { icon: "CORE", title: "Sgr A*", body: "Sagittarius A* contains about 4 million solar masses and sits around 26,000 light-years from Earth at the center of the Milky Way." }
     ],
     visual: "earth"
@@ -494,69 +494,10 @@ function EarthVisual() {
 function HorizonVisual() {
   return (
     <div className="visual-stage">
-      <div className="bh-figure">
-        <svg className="bh-scene" viewBox="0 0 420 260" aria-hidden="true">
-          <defs>
-            <radialGradient id="bhHalo" cx="50%" cy="50%" r="55%">
-              <stop offset="0%" stopColor="rgba(255,194,92,0.24)" />
-              <stop offset="55%" stopColor="rgba(255,102,24,0.18)" />
-              <stop offset="100%" stopColor="rgba(255,102,24,0)" />
-            </radialGradient>
-            <linearGradient id="bhDiskHot" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0%" stopColor="rgba(255,88,14,0)" />
-              <stop offset="12%" stopColor="#7d1200" />
-              <stop offset="25%" stopColor="#ff5c0f" />
-              <stop offset="42%" stopColor="#ffb235" />
-              <stop offset="50%" stopColor="#fff4bf" />
-              <stop offset="58%" stopColor="#ffba3c" />
-              <stop offset="76%" stopColor="#ff6313" />
-              <stop offset="88%" stopColor="#7d1200" />
-              <stop offset="100%" stopColor="rgba(255,88,14,0)" />
-            </linearGradient>
-            <linearGradient id="bhDiskLower" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0%" stopColor="rgba(255,88,14,0)" />
-              <stop offset="18%" stopColor="rgba(255,109,28,0.78)" />
-              <stop offset="50%" stopColor="rgba(255,220,128,0.9)" />
-              <stop offset="82%" stopColor="rgba(255,109,28,0.78)" />
-              <stop offset="100%" stopColor="rgba(255,88,14,0)" />
-            </linearGradient>
-            <radialGradient id="bhCoreGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(255,228,162,0.22)" />
-              <stop offset="55%" stopColor="rgba(255,130,40,0.1)" />
-              <stop offset="100%" stopColor="rgba(255,130,40,0)" />
-            </radialGradient>
-            <filter id="bhBlurLg" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="12" />
-            </filter>
-            <filter id="bhBlurSm" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="4" />
-            </filter>
-          </defs>
-
-          <ellipse cx="210" cy="132" rx="140" ry="72" fill="url(#bhHalo)" filter="url(#bhBlurLg)" />
-          <ellipse cx="210" cy="114" rx="112" ry="30" fill="none" stroke="rgba(255,232,178,0.66)" strokeWidth="8" filter="url(#bhBlurSm)" />
-          <ellipse cx="210" cy="112" rx="124" ry="34" fill="none" stroke="rgba(255,98,20,0.34)" strokeWidth="16" filter="url(#bhBlurLg)" />
-
-          <ellipse cx="210" cy="130" rx="192" ry="18" fill="url(#bhDiskHot)" />
-          <ellipse cx="210" cy="130" rx="168" ry="10" fill="none" stroke="rgba(255,255,224,0.52)" strokeWidth="1.6" />
-          <ellipse cx="210" cy="130" rx="186" ry="26" fill="none" stroke="rgba(255,87,18,0.28)" strokeWidth="14" filter="url(#bhBlurLg)" />
-
-          <ellipse cx="210" cy="172" rx="86" ry="34" fill="none" stroke="url(#bhDiskLower)" strokeWidth="14" filter="url(#bhBlurSm)" />
-          <ellipse cx="210" cy="172" rx="68" ry="23" fill="none" stroke="rgba(255,188,88,0.62)" strokeWidth="6" filter="url(#bhBlurSm)" />
-
-          <ellipse cx="210" cy="132" rx="82" ry="54" fill="url(#bhCoreGlow)" />
-          <ellipse cx="210" cy="132" rx="78" ry="50" fill="#030303" />
-          <ellipse cx="210" cy="132" rx="57" ry="37" fill="none" stroke="rgba(255,245,214,0.96)" strokeWidth="3" />
-          <ellipse cx="210" cy="132" rx="62" ry="40" fill="none" stroke="rgba(255,176,72,0.22)" strokeWidth="9" filter="url(#bhBlurSm)" />
-        </svg>
-      </div>
-      <div className="bh-real-callout">
-        <span className="bh-real-line bh-real-line-a" />
-        <span className="bh-real-line bh-real-line-b" />
-        <span className="bh-real-anchor" />
-        <div className="bh-real-title">Event horizon</div>
-        <div className="bh-real-copy">The boundary around the black hole where nothing, not even light, can escape.</div>
-      </div>
+      <div className="bh-stage"><div className="bh-ring" /><div className="bh-disk" /><div className="bh-core" /></div>
+      <div className="stage-label" style={{ top: 36, right: 18, color: "#f0b031" }}>Photon sphere</div>
+      <div className="stage-label" style={{ left: 44, bottom: 76 }}>Accretion disk</div>
+      <div className="stage-label" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#fff" }}>Event Horizon</div>
     </div>
   );
 }
@@ -726,11 +667,7 @@ function LessonSlide({ lesson, index, total, visited, goTo, onNext, onBack, onRe
                 <div className="title small">{lesson.title}</div>
                 <div className="eyebrow">{lesson.eyebrow}</div>
                 <ul className="copy-list">
-                  {lesson.bullets.map((bullet) => (
-                    <li key={bullet} className="copy-list-item">
-                      {bullet === "This journey explains what that boundary is, how scientists photographed one, and what the image revealed." ? <strong>{bullet}</strong> : bullet}
-                    </li>
-                  ))}
+                  {lesson.bullets.map((bullet) => <li key={bullet} className="copy-list-item">{bullet}</li>)}
                 </ul>
               </div>
               {lesson.keyFact && <div className="fact-box"><div className="fact-title">Key Fact</div><div className="fact-copy">{lesson.keyFact}</div></div>}
