@@ -864,7 +864,7 @@ function PhotoVisual() {
     <div className="visual-stage">
       <div className="photo-card photo-card-feature">
         <div className="photo-frame photo-frame-feature">
-          <img className="bh-photo" src="../FirstBlackHole.jpg" alt="First black hole image captured by the Event Horizon Telescope" />
+          <img className="bh-photo" src="FirstBlackHole.jpg" alt="First black hole image captured by the Event Horizon Telescope" />
         </div>
         <div className="photo-caption-title">Actual EHT Photograph — M87*</div>
         <div className="photo-caption-copy">April 10, 2019. The first-ever image of a black hole.</div>
