@@ -1,4 +1,4 @@
-const canvas = document.getElementById("star-canvas");
+﻿const canvas = document.getElementById("star-canvas");
 const ctx = canvas.getContext("2d");
 
 let stars = [];
@@ -43,106 +43,206 @@ resizeCanvas();
 buildStars();
 drawStars();
 
-const { useEffect, useState } = React;
+const { useEffect, useRef, useState } = React;
 
 const LESSONS = [
   {
     id: "earth",
-    label: "Earth",
+    label: "The Impossible Photograph",
     icon: "EARTH",
-    route: "back on Earth",
-    routeMeta: "Home to galactic center",
-    title: "Mission Briefing",
-    eyebrow: "You are on Earth. At the center of our galaxy, something extraordinary lurks.",
+    navSubtitle: "Setting the scene",
+    route: "THE MISSION",
+    routeMeta: "What humanity set out to do.",
+    title: "The Impossible Photograph",
+    eyebrow: "Scientists wanted to photograph the boundary of a black hole — a surface from which light itself cannot escape — located 55 million light-years away. What they attempted had never been done. What they needed had never been built.",
     bullets: [
-      "Black holes are regions where gravity becomes so strong that not even light can escape.",
-      "Most large galaxies, including the Milky Way, contain a supermassive black hole at their center.",
-      "The defining boundary is the event horizon: cross it, and nothing returns.",
-      "This journey explains what that boundary is, how scientists photographed one, and what the image revealed."
+      "Black holes are regions where gravity is so strong that escape velocity exceeds the speed of light — making them, by definition, invisible.",
+      "At the boundary of every black hole sits the event horizon — the point of no return that defines the black hole itself.",
+      "For most of the 20th century, photographing an event horizon shadow was considered technically impossible.",
+      "This journey answers one question: how did humanity photograph something that cannot, by definition, be seen?"
     ],
-    keyFact: "Black holes are not cosmic vacuum cleaners. They only pull objects in if those objects get too close. From a safe distance, their gravity behaves like any other object with equal mass.",
-    stat: { value: "4M", label: "solar masses of Sagittarius A*, the black hole at our galaxy's center" },
+    keyFactLabel: "KEY FACT",
+    keyFact: "The target of the first photograph was 55 million light-years away and only 40 microarcseconds in apparent size — equivalent to photographing a golf ball on the surface of the Moon.",
+    stat: { value: "40 microarcseconds", label: "the angular size of M87*'s event horizon shadow — the smallest object ever directly imaged" },
     bonusFacts: [
-      { icon: "MAP", title: "Nearest black hole", body: "The nearest known stellar-mass black hole is about 1,500 light-years away in the constellation Monoceros, far enough away to be completely safe." },
-      { icon: "TIME", title: "Time dilation", body: "Near a black hole, time itself runs slower due to extreme gravity. That effect is real and measurable in general relativity." },
-      { icon: "CORE", title: "Sgr A*", body: "Sagittarius A* contains about 4 million solar masses and sits around 26,000 light-years from Earth at the center of the Milky Way." }
+      {
+        icon: "MAP",
+        title: "Why it seemed impossible",
+        bullets: [
+          "No single telescope on Earth was large enough. The required dish size would need to equal Earth's entire diameter — roughly 12,742 kilometers.",
+          "For most of the 20th century, this was considered beyond the reach of any realistic instrument."
+        ]
+      },
+      {
+        icon: "MAP",
+        title: "Two targets",
+        bullets: [
+          "Scientists considered two candidates: M87*, 55 million light-years away in the Messier 87 galaxy, and Sagittarius A*, 26,000 light-years away at the center of our own Milky Way.",
+          "Despite being much closer, Sgr A* presented a harder imaging problem. M87* was chosen as the first target."
+        ]
+      },
+      {
+        icon: "QNTM",
+        title: "The central question",
+        bullets: [
+          "The event horizon is defined by the fact that nothing crossing it can send any signal outward — including light. By definition, it cannot be seen directly.",
+          "What scientists sought to image was the shadow the black hole casts on surrounding light — a dark silhouette predicted by general relativity."
+        ]
+      }
     ],
     visual: "earth"
   },
   {
     id: "horizon",
-    label: "Event Horizon",
+    label: "The Boundary",
     icon: "BH",
-    route: "Photon sphere",
-    routeMeta: "Light orbits here",
+    navSubtitle: "The physics",
+    route: "THE BOUNDARY",
+    routeMeta: "The physics of the event horizon.",
     title: "The Point of No Return",
-    eyebrow: "The event horizon is the most famous boundary in physics: invisible, yet absolute.",
+    eyebrow: "The event horizon is the most consequential boundary in physics — invisible, absolute, and defined entirely by the equations of general relativity.",
     bullets: [
-      "The event horizon is the boundary around a black hole beyond which nothing can escape.",
-      "It is not a solid surface you can touch. It is a boundary in spacetime.",
-      "Once something crosses it, every possible future path leads inward.",
-      "At that boundary, escape velocity equals the speed of light.",
-      "For a non-rotating black hole, its size is described by the Schwarzschild radius: r = 2GM/c^2."
+      "The event horizon is not a physical surface. It is a boundary in spacetime where escape velocity equals the speed of light.",
+      "For a non-rotating black hole, its size is given by the Schwarzschild radius: r = 2GM/c². The horizon scales linearly with mass — double the mass, double the radius.",
+      "Real astrophysical black holes rotate. A rotating black hole has a more complex structure than the simple Schwarzschild case — but the key boundary is still the outer event horizon, the true point of no return.",
+      "At 1.5 times the Schwarzschild radius sits the photon sphere, where gravity is strong enough to trap light in unstable circular orbits. This region — not the event horizon itself — produces the glowing ring seen in EHT images.",
+      "Once any object crosses the event horizon, every possible future path leads inward. Escape is not just difficult — it is geometrically impossible."
     ],
-    keyFact: "For Earth's mass, the Schwarzschild radius, the size of Earth's event horizon if it collapsed, would be just 9 millimeters. Smaller than a marble.",
-    stat: { value: "9mm", label: "how small Earth's event horizon would be if Earth were compressed into a black hole" },
+    keyFactLabel: "KEY FACT",
+    keyFact: "If Earth were compressed into a black hole, its event horizon would be roughly 9 millimeters across - smaller than a marble. M87*'s event horizon, by contrast, spans about 120 billion kilometers - larger than our entire solar system.",
+    stat: { value: "1.5x", label: "the Schwarzschild radius - the distance at which the photon sphere forms, creating the bright ring in EHT images" },
     bonusFacts: [
-      { icon: "TIDE", title: "Spaghettification", body: "Near a stellar black hole, tidal forces would stretch your body because gravity is stronger at your feet than at your head." },
-      { icon: "SLOW", title: "Frozen in time", body: "To a distant observer, anything falling toward a black hole appears to slow down, dim, and redshift near the horizon." },
-      { icon: "QNTM", title: "Hawking radiation", body: "Stephen Hawking predicted black holes should slowly lose mass through quantum effects near the horizon, though very slowly for large ones." }
+      {
+        icon: "BH",
+        title: "What the EHT actually imaged",
+        bullets: [
+          "The EHT did not photograph the event horizon directly. What it captured is the black hole shadow — the dark region from which no photons reach the observer.",
+          "The shadow is larger than the event horizon itself — roughly 2.6 times larger — because gravity bends light paths outward around the photon sphere before they escape to the observer.",
+          "The bright ring and dark center in the final image are a direct consequence of the physics on this page."
+        ]
+      },
+      {
+        icon: "BH",
+        title: "Schwarzschild radius in context",
+        bullets: [
+          "The Schwarzschild radius formula r = 2GM/c² tells us the horizon scales linearly with mass.",
+          "This is why M87, with 6.5 billion solar masses, has an event horizon spanning 120 billion kilometers — and why Earth compressed to a black hole would fit in the palm of your hand."
+        ]
+      },
+      {
+        icon: "SHDW",
+        title: "The photon sphere",
+        bullets: [
+          "These orbits are unstable — photons either spiral inward or escape outward. Those that escape reach distant observers as the bright ring.",
+          "The photon sphere is why the black hole shadow appears larger than the event horizon itself."
+        ]
+      }
     ],
     visual: "horizon"
   },
   {
     id: "matters",
-    label: "Why It Matters",
+    label: "103 Years in the Making",
     icon: "IDEA",
-    route: "The Event Horizon - Deeper Dive",
-    routeMeta: "Exploring the boundary of the known universe",
-    title: "Why the Event Horizon Matters",
-    eyebrow: "A boundary in spacetime that tests the limits of physics and took over a century to photograph.",
+    navSubtitle: "The history",
+    route: "THE HISTORY",
+    routeMeta: "103 years from prediction to photograph.",
+    title: "103 Years in the Making",
+    eyebrow: "Scientists knew what the image would look like for 46 years before they could take it.",
     bullets: [
-      "The event horizon is where general relativity and quantum mechanics collide most directly.",
-      "Both theories work extremely well, but they make conflicting predictions about what happens there.",
-      "The information paradox asks whether information that falls into a black hole is lost forever.",
-      "General relativity points toward loss, while quantum mechanics says information cannot be destroyed.",
-      "That conflict is one of the biggest unsolved problems in theoretical physics."
+      "General relativity predicts an exact shadow size for a black hole of known mass. Scientists knew what the image should look like for over 40 years before they could capture it.",
+      "The shadow diameter is a direct, testable prediction of general relativity in the strong-field regime — conditions no laboratory or solar system experiment can replicate.",
+      "Before the EHT, black holes were inferred from their gravitational effects on surrounding matter. No direct image of an event horizon shadow had ever existed.",
+      "Confirming the shadow's size and shape meant testing Einstein's equations in the most extreme gravitational environment in the known universe."
     ],
-    stat: { value: "103 years", label: "from Schwarzschild's 1916 solution to the first photograph in 2019" },
+    keyFactLabel: "KEY FACT",
+    keyFact: "The shadow of a black hole is not the event horizon itself. It is larger, formed by gravitational lensing of light near the photon sphere. Its predicted size is one of general relativity's most precise strong-field forecasts — and it matched the 2019 image to within 10%.",
+    stat: { value: "103 years", label: "long enough for an entire generation of scientists to dedicate their careers to an image they would never live to see" },
     bonusFacts: [
-      { icon: "INFO", title: "Information paradox", body: "If matter falls into a black hole, is its information permanently lost? General relativity says yes. Quantum mechanics says no." },
-      { icon: "ORBIT", title: "Photon sphere", body: "At 1.5 times the Schwarzschild radius, gravity is strong enough to trap photons in circular orbits, helping create the glowing ring seen in EHT images." },
-      { icon: "SPIN", title: "Rotating horizons", body: "Rotating black holes have more complex structure than non-rotating ones, including frame dragging outside the horizon." }
+      {
+        icon: "IDEA",
+        title: "Bardeen's prediction",
+        bullets: [
+          "In 1973, James Bardeen calculated exactly what a black hole shadow would look like to a distant observer — including the asymmetric brightness caused by relativistic motion in the accretion disk.",
+          "His prediction sat mathematically precise and untested for 46 years, until the EHT image confirmed it in 2019.",
+          "This is one of the rarest outcomes in science: theory waiting nearly half a century for technology to catch up."
+        ]
+      },
+      {
+        icon: "TIME",
+        title: "From prediction to proof",
+        bullets: [
+          "Bardeen's 1973 prediction was mathematically complete but experimentally untestable for decades.",
+          "The obstacle was the instrument — no telescope on Earth had the resolving power to test it.",
+          "It took until 2017 to build the instrument capable of testing it — the Event Horizon Telescope."
+        ]
+      },
+      {
+        icon: "SHDW",
+        title: "The shadow vs. the horizon",
+        bullets: [
+          "Think of a flashlight shining past a ball — the ball blocks some light and casts a shadow larger than the ball itself. A black hole works the same way: its gravity bends light paths around it, casting a shadow larger than the event horizon.",
+          "The dark central region in the EHT image is that shadow — the zone from which no light reaches the observer. It is not a photograph of the horizon, but of the region the horizon makes dark."
+        ]
+      }
     ],
     visual: "deep"
   },
   {
     id: "eht",
-    label: "EHT",
+    label: "Building an Earth-Sized Eye",
     icon: "EHT",
-    route: "Back on Earth - The EHT",
-    routeMeta: "All 8 telescope sites combined",
-    title: "The Event Horizon Telescope",
-    eyebrow: "How humans built a virtual Earth-sized telescope and why they needed one.",
+    navSubtitle: "The instrument",
+    route: "THE INSTRUMENT",
+    routeMeta: "How Earth became a telescope.",
+    title: "Building an Earth-Sized Eye",
+    eyebrow: "To photograph an event horizon shadow, you need a telescope the size of a planet. So they built one.",
     bullets: [
-      "A single telescope could not resolve a black hole's event horizon sharply enough.",
-      "Astronomers linked radio telescopes across Earth using Very Long Baseline Interferometry, or VLBI.",
-      "Each site observed simultaneously and timestamped its data with atomic clocks.",
-      "When the recordings were combined, the network acted like one Earth-sized telescope."
+      "The Event Horizon Telescope takes its name from its singular purpose: to resolve the shadow of an event horizon — the boundary defined in Step 2 — for the first time in history.",
+      "Angular resolution is governed by θ ≈ λ/D — wavelength divided by diameter. Resolving M87*'s shadow required a baseline as large as Earth's full diameter, visible on the globe to the left.",
+      "No single dish can be built at that scale. Instead, eight radio telescope sites across six continents were linked using Very Long Baseline Interferometry (VLBI) to form one virtual Earth-sized observatory.",
+      "Each site recorded simultaneously — precise timing was essential for combining signals across thousands of kilometers. See the Dig Deeper card for how this was achieved.",
+      "The 2017 campaign generated so much data it could not be sent online — explore the bonus cards to find out how it was delivered.",
+      "The final image was not a photograph — it was reconstructed from the data. See the bonus cards for how that reconstruction was validated."
     ],
-    keyFact: "The EHT reaches an angular resolution of about 20 micro-arcseconds, sharp enough to read a newspaper in New York from a sidewalk cafe in Paris.",
+    keyFactLabel: "KEY FACT",
+    keyFact: "The EHT achieves an angular resolution of about 20 microarcseconds at 1.3 mm (230 GHz). This is the highest angular resolution ever achieved in astronomy — and it required making the telescope baseline as large as Earth itself.",
     stat: { value: "8", label: "telescope sites across 6 continents forming one virtual Earth-sized telescope" },
     bonusFacts: [
-      { icon: "LINK", title: "VLBI", body: "Very Long Baseline Interferometry combines signals from telescopes thousands of kilometers apart, filling in detail as Earth rotates." },
-      { icon: "DATA", title: "5 petabytes", body: "The 2017 observing campaign produced about 5 petabytes of data, too much to send online, so drives were physically shipped." },
-      { icon: "ICE", title: "Antarctica wait", body: "The South Pole Telescope's hard drives had to wait months for the next flight out of Antarctica before processing could begin." }
+      {
+        icon: "LINK",
+        title: "How VLBI works",
+        bullets: [
+          "Each telescope in the EHT array records radio waves simultaneously, with precise timestamps from atomic clocks.",
+          "The recordings from all sites are combined after the fact to extract the signal — the farther apart two telescopes are, the finer the detail they can resolve together.",
+          "As Earth rotates during the observation, the changing positions of telescopes gradually build up a more complete picture of the source."
+        ]
+      },
+      {
+        icon: "SHDW",
+        title: "Four imaging pipelines",
+        bullets: [
+          "The EHT image was not taken like a photograph. It was mathematically reconstructed from the combined telescope data.",
+          "Four completely independent teams, using different reconstruction methods, each produced their own image without seeing the others' results.",
+          "All four arrived at the same answer — a bright ring surrounding a dark central shadow. That agreement is what makes the result convincing."
+        ]
+      },
+      {
+        icon: "DATA",
+        title: "The data problem",
+        bullets: [
+          "The 2017 observing campaign produced approximately 5 petabytes of data — far too large to transmit over the internet. Hard drives had to be physically shipped from every telescope site to correlation facilities.",
+          "The South Pole Telescope's drives faced an additional delay: Antarctica is inaccessible during winter. Its data did not arrive for processing until October 2017, six months after the observations."
+        ]
+      }
     ],
     visual: "eht"
   },
   {
     id: "m87",
-    label: "M87",
+    label: "Why M87*?",
     icon: "M87",
+    navSubtitle: "The target",
     route: "M87 - 55 million light-years away",
     routeMeta: "Target: Messier 87 galaxy",
     title: "Why M87*?",
@@ -151,39 +251,86 @@ const LESSONS = [
       "Once Earth-sized resolution was possible, scientists still needed the right target.",
       "Messier 87 is a giant elliptical galaxy 55 million light-years away.",
       "At its center is M87*, a black hole with about 6.5 billion times the Sun's mass.",
-      "Its event horizon appears larger in the sky than Sagittarius A* even though it is much farther away.",
-      "M87* also changes more slowly, making it easier to image clearly."
+      "M87*'s mass of 6.5 billion solar masses gives it a light-crossing time of several days — meaning its structure is essentially stable over an entire observing campaign.",
+      "Sgr A*, the black hole at the center of our own Milky Way, presented a harder imaging problem — explore the bonus cards to find out why."
     ],
-    keyFact: "M87* is so massive that our entire solar system could fit inside its event horizon many times over. Its horizon spans about 120 billion kilometers.",
+    keyFactLabel: "KEY FACT",
+    keyFact: "M87*'s event horizon spans about 120 billion kilometers — larger than our entire solar system. Its enormous size and days-long structural stability made it the ideal first target, despite being 55 million light-years away.",
     stat: { value: "6.5B", label: "solar masses - the immense size of M87*, the first black hole ever photographed" },
     bonusFacts: [
-      { icon: "JET", title: "Relativistic jet", body: "M87 is famous for launching a jet of plasma thousands of light-years long at nearly the speed of light." },
-      { icon: "WHY", title: "Why not Sgr A*?", body: "Sagittarius A* is smaller and changes more rapidly, so its image blurs more easily during a long observing run." },
-      { icon: "NEXT", title: "Sgr A* later", body: "In May 2022, the EHT released the first image of our own galaxy's black hole after solving a tougher imaging problem." }
+      {
+        icon: "JET",
+        title: "The relativistic jet",
+        bullets: [
+          "M87 is famous for launching a jet of plasma thousands of light-years long at nearly the speed of light — one of the most powerful jets known in any galaxy.",
+          "This jet is one of the reasons M87 was already well-studied before the EHT — making it a target with decades of supporting observations behind it."
+        ]
+      },
+      {
+        icon: "WHY",
+        title: "Why not Sgr A*?",
+        bullets: [
+          "Sgr A* is the black hole at the center of our own Milky Way — much closer, but far harder to image.",
+          "Because it is so much less massive, its structure changes faster than a long observation can average out, blurring the image.",
+          "The EHT eventually imaged Sgr A* in 2022 using new algorithms developed specifically for its rapidly changing structure — and found the same shadow shape."
+        ]
+      },
+      {
+        icon: "IMG",
+        title: "What the image was predicted to show",
+        bullets: [
+          "With M87* confirmed as the target, scientists already knew what the image should look like before taking it. General relativity predicted a bright asymmetric ring surrounding a dark central shadow.",
+          "The predicted shadow diameter for M87*'s mass and distance had been calculated precisely in advance — scientists knew the exact size of the shadow before a single telescope pointed at it."
+        ]
+      }
     ],
     visual: "m87"
   },
   {
     id: "image",
-    label: "First Image",
+    label: "The Photograph",
     icon: "IMG",
+    navSubtitle: "The result",
     route: "Historic release",
     routeMeta: "First direct black hole image",
-    title: "The First Image of a Black Hole",
-    eyebrow: "On April 10, 2019, the Event Horizon Telescope Collaboration showed humanity something no one had ever seen.",
+    title: "The Photograph",
+    eyebrow: "April 10, 2019. The Event Horizon Telescope Collaboration released the first direct observational confirmation of what general relativity had predicted for over a century.",
     bullets: [
-      "The image shows a bright, uneven ring surrounding a dark central shadow.",
-      "The glowing ring is superheated plasma in the accretion disk.",
-      "Its light is bent by the black hole's extreme gravity before reaching us.",
-      "One side looks brighter because material there is moving toward Earth and is relativistically boosted.",
-      "The dark interior is the black hole shadow, matching Einstein's predictions remarkably well."
+      "The image shows a bright, asymmetric ring of emission surrounding a dark central shadow — every feature of which had been predicted by general relativity before the image existed.",
+      "The bright ring is superheated plasma in the accretion disk, whose light is bent toward the observer by extreme spacetime curvature.",
+      "The brightness asymmetry is caused by relativistic Doppler beaming — material rotating toward Earth is boosted in brightness; the receding side appears dimmer.",
+      "The dark central region is the black hole shadow — bounded by the photon capture cross-section near the photon sphere, not the event horizon itself.",
+      "The measured shadow diameter matched general relativity's prediction exactly — confirming what 103 years of theory said it would look like."
     ],
-    keyFact: "The image confirmed Einstein's general theory of relativity in one of the most extreme environments in the known universe.",
-    stat: { value: "Apr 10, 2019", label: "the date humanity first photographed a black hole" },
+    keyFactLabel: "KEY FACT",
+    keyFact: "The shadow size matched Einstein's general theory of relativity to within 10% — in one of the most extreme gravitational environments in the known universe. This is one of the strongest tests of GR ever performed.",
+    stat: { value: "Apr 10, 2019", label: "the date humanity first directly observed the shadow of an event horizon" },
     bonusFacts: [
-      { icon: "SHDW", title: "The shadow", body: "The dark central region is not just the event horizon, but the enlarged shadow created by bent light paths near the black hole." },
-      { icon: "GLOW", title: "Brightness asymmetry", body: "The side of the ring rotating toward Earth is relativistically boosted, making it appear brighter than the receding side." },
-      { icon: "TEST", title: "Einstein confirmed", body: "The measured size of the shadow matched general relativity predictions to within about 10%, one of its strongest tests." }
+      {
+        icon: "SHDW",
+        title: "The shadow boundary",
+        bullets: [
+          "Think of the shadow like the dark circle cast behind a ball held in front of a light. The black hole's gravity bends light around it, creating a dark zone larger than the horizon itself — that dark zone is what the EHT captured.",
+          "Light that passes too close gets pulled in and never escapes. Light that passes just far enough away bends around the black hole and reaches us — forming the bright ring.",
+          "The fact that the shadow appeared at all — exactly where and how theory said it would — is the result of 103 years of physics, from Schwarzschild's equations to this image."
+        ]
+      },
+      {
+        icon: "GLOW",
+        title: "Relativistic Doppler beaming",
+        bullets: [
+          "The southern portion of M87*'s ring appears brighter because that material is moving toward Earth and is relativistically boosted in both brightness and frequency.",
+          "The northern portion, moving away, appears dimmer. This asymmetry is not an imaging artifact — it is a direct signature of relativistic motion in the accretion flow and was predicted by Bardeen in 1973."
+        ]
+      },
+      {
+        icon: "TEST",
+        title: "What this image confirmed",
+        bullets: [
+          "The image matched what general relativity predicted — in gravitational conditions far more extreme than anything testable on Earth or in the solar system.",
+          "For the first time, an event horizon shadow went from mathematical prediction to directly observed, measurable reality."
+        ]
+      }
     ],
     visual: "photo"
   },
@@ -191,75 +338,60 @@ const LESSONS = [
     id: "quiz",
     label: "Mini Quiz",
     icon: "TEST",
+    navSubtitle: "The test",
     route: "Final checkpoint",
     routeMeta: "Mini review challenge",
-    title: "Mini Quiz",
-    eyebrow: "A dedicated end-of-journey question so the information slides stay focused on the lesson.",
-    bullets: [
-      "These questions cover the event horizon, the Event Horizon Telescope, and the first black hole image.",
-      "Select one answer for each question, then submit the quiz to see your score.",
-      "Use the final percentage as a quick check on how well the main concepts stuck."
-    ],
-    stat: { value: "4", label: "interactive review questions at the end of the journey" },
+    title: "What Did You Learn?",
+    eyebrow: "These questions test understanding, not memorization. Read each explanation after answering.",
+    bullets: [],
+    stat: { value: "6", label: "conceptual questions testing what the journey explained" },
     bonusFacts: [],
     quizQuestions: [
       {
-        question: "Why did it take until 2019 to photograph a black hole's event horizon, despite the theory existing since 1916?",
+        question: "What produces the bright ring in the EHT image of M87*?",
         options: [
-          "Scientists did not believe black holes were real until then.",
-          "The angular size is too tiny, so we needed a telescope effectively the size of Earth.",
-          "Black holes only formed recently in the universe.",
-          "Existing optical telescopes were blocked by Earth's atmosphere alone."
+          "The event horizon itself emitting light",
+          "The photon sphere region, where lensed accretion disk emission accumulates",
+          "A reflection of starlight off the black hole surface",
+          "Light escaping directly from the accretion disk"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "The bright ring is not the event horizon. It is the photon sphere region at 1.5 times the Schwarzschild radius, where gravity bends light from the accretion disk into near-circular paths. This was the key distinction introduced in Step 2."
       },
       {
-        question: "What is the event horizon?",
+        question: "How does the EHT achieve its extreme angular resolution?",
         options: [
-          "The glowing ring of gas around every planet.",
-          "A solid shell surrounding a black hole.",
-          "The boundary beyond which nothing can escape a black hole.",
-          "The point where black holes are created in a supernova."
+          "By using the largest single radio dish ever built",
+          "By observing at infrared wavelengths to improve clarity",
+          "By linking telescopes across Earth using Very Long Baseline Interferometry to synthesize an Earth-sized aperture",
+          "By orbiting telescopes above Earth's atmosphere"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "The resolution formula θ ≈ λ/D means that at 1.3 mm wavelength, resolving M87*'s shadow required a baseline equal to Earth's diameter. VLBI links eight telescope sites across six continents with atomic clock timestamps to synthesize that virtual aperture."
       },
       {
-        question: "What made the Event Horizon Telescope powerful enough to image M87*?",
+        question: "What did the measured shadow diameter of M87* confirm?",
         options: [
-          "It used visible-light cameras in space.",
-          "It linked observatories across Earth to act like one huge telescope.",
-          "It flew a telescope close to the black hole.",
-          "It only observed black holes during solar eclipses."
+          "That black holes emit light through Hawking radiation",
+          "That Einstein's general theory of relativity holds in the most extreme gravitational conditions ever directly observed",
+          "That M87* is the largest black hole in the universe",
+          "That the event horizon and the black hole shadow are the same size"
         ],
-        correct: 1
-      },
-      {
-        question: "What does the dark center in the first black hole image represent?",
-        options: [
-          "The enlarged shadow caused by light bending near the black hole.",
-          "A hole in the camera sensor.",
-          "A nearby planet blocking the view.",
-          "A cold cloud of gas in front of the galaxy."
-        ],
-        correct: 0
+        correct: 1,
+        explanation: "The shadow diameter matched the general relativity prediction to within 10% — in gravitational conditions far more extreme than anything testable on Earth or in the solar system. This is one of the strongest confirmations of Einstein's equations ever performed."
       }
     ],
     visual: "quiz"
   }
 ];
 
-const DEEP_CARDS = [
-  { title: "Schwarzschild Horizon", subtitle: "Non-rotating black hole", color: "#b889ff", bullets: ["The simplest event horizon: a perfect sphere.", "Radius r = 2GM/c^2 for a black hole of mass M.", "Time appears frozen at this surface to a distant observer."] },
-  { title: "Kerr Horizon", subtitle: "Rotating black hole", color: "#6f86ff", bullets: ["Real black holes spin, formed from rotating stars.", "A rotating hole has an outer event horizon and frame dragging outside it.", "The ergosphere lets objects extract rotational energy."] }
-];
-
 const TIMELINE = [
-  { year: "1916", text: "Schwarzschild solves Einstein's equations and predicts black holes.", color: "#af7eff" },
-  { year: "1939", text: "Oppenheimer and Snyder show stars can collapse into black holes.", color: "#8d95ff" },
-  { year: "1967", text: "John Wheeler coins the term 'black hole'.", color: "#69b3ff" },
-  { year: "1974", text: "Hawking predicts black holes slowly radiate away.", color: "#3ae28b" },
-  { year: "1994", text: "Hubble provides indirect evidence for supermassive black holes.", color: "#f0a03a" },
-  { year: "2019", text: "EHT captures the first direct image of an event horizon shadow.", color: "#ffd84a" }
+  { year: "1916", text: "Schwarzschild solves Einstein's field equations, deriving the first black hole solution and the concept of a critical radius.", color: "#9ea6b8" },
+  { year: "1939", text: "Oppenheimer and Snyder show that gravitational collapse can actually produce a black hole in nature.", color: "#9ea6b8" },
+  { year: "1967", text: "John Wheeler coins the term \"black hole.\"", color: "#9ea6b8" },
+  { year: "1973", text: "Bardeen calculates the theoretical appearance of a black hole shadow — the first prediction of what EHT would image.", color: "#9ea6b8" },
+  { year: "2006", text: "The Event Horizon Telescope project formally begins.", color: "#f0a03a" },
+  { year: "2019", text: "The Event Horizon Telescope releases the first direct image of an event horizon shadow — the culmination of 103 years of theory and observation.", color: "#b14cff" }
 ];
 
 const EHT_SITES = [
@@ -308,7 +440,7 @@ function BonusFacts({ slideIndex, facts }) {
   const [revealed, setRevealed] = useState([]);
 
   useEffect(() => {
-    setRevealed(Array(facts.length).fill(false));
+    setRevealed(facts.map(() => false));
   }, [slideIndex, facts.length]);
 
   const discovered = revealed.filter(Boolean).length;
@@ -318,6 +450,7 @@ function BonusFacts({ slideIndex, facts }) {
   }
 
   function getFactBullets(fact) {
+    if (fact.bullets) return fact.bullets;
     return fact.body
       .split(". ")
       .map((part) => part.trim())
@@ -333,8 +466,9 @@ function BonusFacts({ slideIndex, facts }) {
       </div>
       <div className="bonus-grid">
         {facts.map((fact, index) => (
-          <div key={fact.title} className={`bonus-card ${revealed[index] ? "revealed" : ""}`} onClick={() => toggleCard(index)}>
-            <div className="bonus-icon"><IconGlyph type={fact.icon} className="icon-glyph-bonus" /></div>
+          <div key={fact.title} className={`bonus-card ${index === 0 ? "featured" : ""} ${revealed[index] ? "revealed" : ""}`} onClick={() => toggleCard(index)}>
+            {index === 0 && <div className="bonus-badge">Dig Deeper</div>}
+            {index !== 0 && <div className="bonus-icon"><IconGlyph type={fact.icon} className="icon-glyph-bonus" /></div>}
             <div className="bonus-title">{fact.title}</div>
             <div className="bonus-body">
               {revealed[index] ? (
@@ -370,11 +504,6 @@ function QuizSection({ slideIndex, questions }) {
     setAnswers((current) => current.map((answer, index) => (index === questionIndex ? optionIndex : answer)));
   }
 
-  function submitQuiz() {
-    if (!allAnswered) return;
-    setSubmitted(true);
-  }
-
   function resetQuiz() {
     setAnswers(Array(questions.length).fill(null));
     setSubmitted(false);
@@ -382,7 +511,8 @@ function QuizSection({ slideIndex, questions }) {
 
   return (
     <div className="quiz-box">
-      <div className="quiz-title">Mini quiz</div>
+      <div className="quiz-title">What Did You Learn?</div>
+      <div className="quiz-subtitle">These questions test understanding, not memorization. Read each explanation after answering.</div>
       <div className="quiz-stack">
         {questions.map((question, questionIndex) => (
           <div key={question.question} className="quiz-card">
@@ -407,12 +537,22 @@ function QuizSection({ slideIndex, questions }) {
                 );
               })}
             </div>
+            {submitted && (
+              <div className="quiz-explanation">
+                <div className="quiz-explanation-answer">Correct answer: {String.fromCharCode(65 + question.correct)}</div>
+                <div className="quiz-explanation-copy">{question.explanation}</div>
+              </div>
+            )}
           </div>
         ))}
       </div>
       <div className="quiz-actions">
-        {!submitted && <button type="button" className="nav-button primary" onClick={submitQuiz} disabled={!allAnswered}>Submit Quiz</button>}
         {!allAnswered && !submitted && <div className="quiz-meta">Answer all {questions.length} questions to calculate your score.</div>}
+        {allAnswered && !submitted && (
+          <>
+            <button type="button" className="nav-button primary" onClick={() => setSubmitted(true)}>Finish Quiz</button>
+          </>
+        )}
       </div>
       {submitted && (
         <div className="quiz-overlay">
@@ -439,6 +579,20 @@ function QuizSection({ slideIndex, questions }) {
               <div className="quiz-rocket-flame" />
             </div>
             <div className="quiz-score">Score: {correctCount}/{questions.length} ({scorePercent}%)</div>
+            <div className="quiz-stack">
+              {questions.map((question, questionIndex) => (
+                <div key={`${question.question}-result`} className="quiz-card">
+                  <div className="quiz-question">Question {questionIndex + 1}</div>
+                  <div className="quiz-prompt">{question.question}</div>
+                  <div className="quiz-explanation">
+                    <div className="quiz-explanation-answer">
+                      {answers[questionIndex] === question.correct ? "Correct" : "Incorrect"} • Correct answer: {String.fromCharCode(65 + question.correct)}
+                    </div>
+                    <div className="quiz-explanation-copy">{question.explanation}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="quiz-farewell">Thank you for coming along with us on this journey to the event horizon. From Earth to the first black hole image, you have now reached the end of the presentation.</div>
             <button type="button" className="nav-button secondary" onClick={resetQuiz}>Close and Try Again</button>
           </div>
@@ -460,7 +614,10 @@ function CourseNav({ index, visited, goTo }) {
           return (
             <div key={lesson.id} className={`course-tab ${done ? "done" : ""} ${lessonIndex === index ? "active" : ""}`} onClick={() => goTo(lessonIndex)}>
               <div className="tab-icon"><IconGlyph type={lesson.icon} className="icon-glyph-tab" /></div>
-              <div className="tab-label">{lesson.label}</div>
+              <div className="tab-copy">
+                <div className="tab-label">{lesson.label}</div>
+                <div className="tab-subtitle">{lesson.navSubtitle}</div>
+              </div>
             </div>
           );
         })}
@@ -488,16 +645,131 @@ function CourseNav({ index, visited, goTo }) {
 }
 
 function EarthVisual() {
-  return <div className="visual-stage"><div className="moon" /><div className="planet" /></div>;
+  return (
+    <div className="visual-stage">
+      <div className="impossible-scene">
+        <div className="impossible-nebula impossible-nebula-a" />
+        <div className="impossible-nebula impossible-nebula-b" />
+        <div className="impossible-nebula impossible-nebula-c" />
+        <div className="impossible-stars impossible-stars-near" />
+        <div className="impossible-stars impossible-stars-far" />
+        <div className="impossible-stars impossible-stars-twinkle" />
+        <div className="impossible-range-ring" />
+        <div className="impossible-range-line" />
+        <div className="impossible-earth-glow" />
+        <div className="impossible-earth">
+          <div className="impossible-earth-night" />
+          <div className="impossible-earth-atmosphere" />
+        </div>
+        <div className="impossible-galaxy-wrap">
+          <div className="impossible-target-beacon" />
+          <div className="impossible-galaxy">
+            <div className="impossible-galaxy-haze" />
+            <div className="impossible-galaxy-arms" />
+            <div className="impossible-galaxy-core" />
+            <div className="impossible-galaxy-hole" />
+          </div>
+        </div>
+        <div className="impossible-label impossible-label-earth">Earth</div>
+        <div className="impossible-label impossible-label-m87">M87*</div>
+        <div className="impossible-caption">55 million light-years away</div>
+      </div>
+    </div>
+  );
+}
+
+function BlackHoleKeyedVisual() {
+  const canvasRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const image = imageRef.current;
+    if (!canvas || !image) return undefined;
+
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    let animationFrame = 0;
+
+    function renderFrame() {
+      if (!canvas.isConnected || !image.complete || !image.naturalWidth) {
+        animationFrame = requestAnimationFrame(renderFrame);
+        return;
+      }
+
+      const width = canvas.width;
+      const height = canvas.height;
+
+      context.clearRect(0, 0, width, height);
+      context.drawImage(image, 0, 0, width, height);
+
+      const frame = context.getImageData(0, 0, width, height);
+      const data = frame.data;
+      const centerX = width * 0.505;
+      const centerY = height * 0.47;
+      const radiusX = width * 0.165;
+      const radiusY = height * 0.19;
+
+      for (let index = 0; index < data.length; index += 4) {
+        const x = ((index / 4) % width);
+        const y = Math.floor(index / 4 / width);
+        const red = data[index];
+        const green = data[index + 1];
+        const blue = data[index + 2];
+        const luminance = red * 0.2126 + green * 0.7152 + blue * 0.0722;
+
+        const dx = (x - centerX) / radiusX;
+        const dy = (y - centerY) / radiusY;
+        const insideShadow = dx * dx + dy * dy <= 1;
+
+        if (insideShadow) {
+          data[index] = 0;
+          data[index + 1] = 0;
+          data[index + 2] = 0;
+          data[index + 3] = 255;
+          continue;
+        }
+
+        if (luminance < 18) {
+          data[index + 3] = 0;
+          continue;
+        }
+
+        if (luminance < 40) {
+          data[index + 3] = Math.max(0, Math.round((luminance - 18) * 8));
+        }
+      }
+
+      context.putImageData(frame, 0, 0);
+      animationFrame = requestAnimationFrame(renderFrame);
+    }
+
+    function startRender() {
+      cancelAnimationFrame(animationFrame);
+      renderFrame();
+    }
+
+    if (image.complete) startRender();
+    image.addEventListener("load", startRender);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      image.removeEventListener("load", startRender);
+    };
+  }, []);
+
+  return (
+    <div className="bh-gif-frame">
+      <div className="bh-shadow-base" aria-hidden="true" />
+      <canvas ref={canvasRef} className="bh-gif-canvas" width="520" height="300" aria-hidden="true" />
+      <img ref={imageRef} className="bh-gif-source" src="./black hole.gif" alt="Animated black hole visualization" />
+    </div>
+  );
 }
 
 function HorizonVisual() {
   return (
     <div className="visual-stage">
-      <div className="bh-stage"><div className="bh-ring" /><div className="bh-disk" /><div className="bh-core" /></div>
-      <div className="stage-label" style={{ top: 36, right: 18, color: "#f0b031" }}>Photon sphere</div>
-      <div className="stage-label" style={{ left: 44, bottom: 76 }}>Accretion disk</div>
-      <div className="stage-label" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#fff" }}>Event Horizon</div>
+      <BlackHoleKeyedVisual />
     </div>
   );
 }
@@ -505,13 +777,6 @@ function HorizonVisual() {
 function DeepVisual() {
   return (
     <div className="deep-column">
-      {DEEP_CARDS.map((card) => (
-        <div key={card.title} className="deep-card" style={{ borderColor: `${card.color}44` }}>
-          <h4 style={{ color: card.color }}>{card.title}</h4>
-          <p>{card.subtitle}</p>
-          <ul>{card.bullets.map((bullet) => <li key={bullet}>- {bullet}</li>)}</ul>
-        </div>
-      ))}
       <div className="timeline-box">
         <div className="timeline-title">Road to the first image</div>
         <div className="timeline-items">
@@ -597,12 +862,12 @@ function M87Visual() {
 function PhotoVisual() {
   return (
     <div className="visual-stage">
-      <div className="photo-card">
-        <div className="photo-frame">
+      <div className="photo-card photo-card-feature">
+        <div className="photo-frame photo-frame-feature">
           <img className="bh-photo" src="../FirstBlackHole.jpg" alt="First black hole image captured by the Event Horizon Telescope" />
         </div>
-        <div className="photo-caption-title">Actual EHT Photograph - M87*</div>
-        <div className="photo-caption-copy">April 10, 2019. The first-ever image of a black hole. The bright ring is superheated plasma. The dark center is the event horizon shadow.</div>
+        <div className="photo-caption-title">Actual EHT Photograph — M87*</div>
+        <div className="photo-caption-copy">April 10, 2019. The first-ever image of a black hole.</div>
       </div>
     </div>
   );
@@ -670,7 +935,7 @@ function LessonSlide({ lesson, index, total, visited, goTo, onNext, onBack, onRe
                   {lesson.bullets.map((bullet) => <li key={bullet} className="copy-list-item">{bullet}</li>)}
                 </ul>
               </div>
-              {lesson.keyFact && <div className="fact-box"><div className="fact-title">Key Fact</div><div className="fact-copy">{lesson.keyFact}</div></div>}
+              {lesson.keyFact && <div className="fact-box"><div className="fact-title">{lesson.keyFactLabel || "Key Fact"}</div><div className="fact-copy">{lesson.keyFact}</div></div>}
               <div className="stat-box"><div className="stat-value">{lesson.stat.value}</div><div className="stat-label">{lesson.stat.label}</div></div>
             </div>
           </div>
@@ -688,15 +953,23 @@ function Intro({ onStart }) {
     <div className="hero-shell">
       <div className="hero-inner">
         <div className="hero-pill">Astronomy II - Class Presentation</div>
-        <div className="hero-planet-wrap"><div className="moon" style={{ top: 24, right: 30 }} /><div className="planet" /></div>
-        <div className="hero-title">Journey to the<br /><span>Event Horizon</span></div>
-        <div className="hero-copy">Begin in your home state. Navigate step by step through the cosmos. Arrive at one of the universe's most extreme boundaries and discover how humanity photographed it for the first time.</div>
-        <div className="hero-metrics">
-          <div className="metric-card"><div className="metric-icon"><IconGlyph type="EARTH" className="icon-glyph-metric" /></div><div className="metric-label">Start on Earth</div></div>
-          <div className="metric-card"><div className="metric-icon"><IconGlyph type="ORBIT" className="icon-glyph-metric" /></div><div className="metric-label">6 Stops</div></div>
-          <div className="metric-card"><div className="metric-icon"><IconGlyph type="BH" className="icon-glyph-metric" /></div><div className="metric-label">Reach the Horizon</div></div>
+        <div className="hero-planet-wrap">
+          <div className="hero-black-hole-scene">
+            <div className="hero-black-hole-halo" />
+            <div className="hero-black-hole-ring" />
+            <div className="hero-black-hole-shadow" />
+            <div className="hero-black-hole-stars hero-black-hole-stars-a" />
+            <div className="hero-black-hole-stars hero-black-hole-stars-b" />
+          </div>
         </div>
-        <button className="hero-button" onClick={onStart}>Begin the Journey -></button>
+        <div className="hero-title">Journey to the<br /><span>Event Horizon</span></div>
+        <div className="hero-copy">At the center of the Messier 87 galaxy, 55 million light-years away, sits a boundary from which nothing - not even light - can escape. For most of the 20th century, imaging it was considered impossible. This is the story of the event horizon, the telescope built to find it, and the photograph that changed science forever.</div>
+        <div className="hero-metrics">
+          <div className="metric-card"><div className="metric-icon"><IconGlyph type="EARTH" className="icon-glyph-metric" /></div><div className="metric-label">The Physics</div></div>
+          <div className="metric-card"><div className="metric-icon"><IconGlyph type="ORBIT" className="icon-glyph-metric" /></div><div className="metric-label">6 Stops</div></div>
+          <div className="metric-card"><div className="metric-icon"><IconGlyph type="BH" className="icon-glyph-metric" /></div><div className="metric-label">The Photograph</div></div>
+        </div>
+        <button className="hero-button" onClick={onStart}>Begin the Journey </button>
       </div>
     </div>
   );

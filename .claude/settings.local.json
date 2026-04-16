@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(start \"c:/Users/junio/OneDrive/Documents/Desktop/EventHorizon/EVP/index.html\")"
-    ]
-  }
-}
